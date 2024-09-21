@@ -1,1 +1,30 @@
-<p>question works!</p>
+<div class="questionLayout m-4 border-2 border-dashed border-slate-950">
+    <div class="questDropdown flex justify-between m-2">
+        <input class=" focus:outline-none w-3/5 p-2 bg-slate-200 " type="text" placeholder="question" >
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>text_fields</mat-icon>
+              <span>Text</span>
+            </button>
+            <button mat-menu-item >
+              <mat-icon>radio_button_checked</mat-icon>
+              <span>Radio Button</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>check_box</mat-icon>
+              <span>Checkbox</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>arrow_drop_down</mat-icon>
+                <span>Dropdown</span>
+              </button>
+          </mat-menu>
+          
+    </div>
+    <div class="textbox">
+        <textarea style="width: 97.5%;" class="m-2 border-2 border-solid border-black" name="textArea" id="textarea"></textarea>
+    </div>
+</div>
