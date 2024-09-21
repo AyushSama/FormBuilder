@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>Form Preview</h2>
+<mat-dialog-content class="mat-typography">
+
+  <div *ngFor="let question of questionsData; let i = index" class="question-block">
+    <h6>{{ question.question }}</h6>
+
+    <!-- Text Input -->
+  <div *ngIf="question.questionType === 'text'" class="options-group">
+    <input type="text" [(ngModel)]="textAnswers[i]" class="text-input" placeholder="Enter your answer" />
+  </div>
+  
+    <!-- Radio Button Group -->
+    <div *ngIf="question.questionType === 'RADIO'" class="options-group">
+      <div *ngFor="let option of question.options; let j = index">
+        <label>
+          <input type="radio" [name]="'radio-group-' + i" [value]="option.answerOption" [(ngModel)]="selectedOptions[i]" />
+          {{ option.answer }}
+        </label>
+      </div>
+    </div>
+  
+    <!-- Dropdown -->
+    <div *ngIf="question.questionType === 'DROPDOWN'" class="options-group">
+      <select [(ngModel)]="selectedOptions[i]">
+        <option *ngFor="let option of question.options" [value]="option.answerOption">{{ option.answer }}</option>
+      </select>
+    </div>
+  
+    <!-- Checkbox Group -->
+    <div *ngIf="question.questionType === 'CHECKBOX'" class="options-group">
+      <div *ngFor="let option of question.options; let j = index">
+        <label>
+          <input type="checkbox" [value]="option.answerOption" (change)="handleCheckboxChange(i, option.answerOption, $event)" />
+          {{ option.answer }}
+        </label>
+      </div>
+    </div>
+  </div>
+  
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+</mat-dialog-actions>

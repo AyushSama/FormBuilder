@@ -60,7 +60,7 @@ export class QuestionComponent {
       .subscribe({
         next: (res: any) => {
           this.qContext.storeQuestionContext(res.questionId);
-          console.log(res);
+          alert("Question Added Successfully!!")
         },
         error: (error: HttpErrorResponse) => {
           console.log(error);

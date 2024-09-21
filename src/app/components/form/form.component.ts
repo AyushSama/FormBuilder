@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { QuestionComponent } from "../question/question.component";
 import { MatIcon } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
+import { PreviewComponent } from '../preview/preview.component';
 
 @Component({
   selector: 'app-form',
@@ -24,5 +26,15 @@ export class FormComponent {
 
   handleDelete($event: boolean,$index:number) {
     this.removeOption($index);
+  }
+
+  readonly dialog = inject(MatDialog);
+
+  openDialog() {
+    const dialogRef = this.dialog.open(PreviewComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
