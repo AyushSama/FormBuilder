@@ -3,24 +3,27 @@
         <input class=" focus:outline-none w-3/5 p-2 bg-slate-200 " type="text" placeholder="question" >
         <div class="buttons">
           <button><mat-icon>save</mat-icon></button>
+          <span class="questionType relative -top-1 left-2 font text-xl">
+            {{selectedQuestionType}}
+          </span>
           <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
             <mat-icon>more_vert</mat-icon>
           </button>
         </div>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item>
+            <button (click)="handleQuestionType('TEXT')" mat-menu-item>
               <mat-icon>text_fields</mat-icon>
               <span>Text</span>
             </button>
-            <button mat-menu-item >
+            <button (click)="handleQuestionType('RADIO')" mat-menu-item >
               <mat-icon>radio_button_checked</mat-icon>
               <span>Radio Button</span>
             </button>
-            <button mat-menu-item>
+            <button (click)="handleQuestionType('CHECKBOX')" mat-menu-item>
               <mat-icon>check_box</mat-icon>
               <span>Checkbox</span>
             </button>
-            <button mat-menu-item>
+            <button (click)="handleQuestionType('DROPDOWN')" mat-menu-item>
                 <mat-icon>arrow_drop_down</mat-icon>
                 <span>Dropdown</span>
             </button>
@@ -31,8 +34,12 @@
           </mat-menu>
           
     </div>
-    <div class="textbox">
-        <textarea style="width: 97.5%;" class="m-2 border-2 border-solid border-black" name="textArea" id="textarea"></textarea>
-    </div>
-    <app-optionmenu></app-optionmenu>
+    @if (selectedQuestionType == "TEXT") {
+      <div class="textbox">
+          <textarea style="width: 97.5%;" class="m-2 border-2 border-solid border-black" name="textArea" id="textarea"></textarea>
+      </div>
+    }
+    @else {
+      <app-optionmenu></app-optionmenu>
+    }
 </div>

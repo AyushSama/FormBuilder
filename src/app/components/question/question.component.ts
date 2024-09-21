@@ -13,9 +13,13 @@ import { OptionmenuComponent } from "../optionmenu/optionmenu.component";
 })
 export class QuestionComponent {
   @Output() delete = new EventEmitter<boolean>;
+  selectedQuestionType:string = "TEXT";
   
   handleDeleteQuestion() {
     this.delete.emit(true);
   }
-
+  handleQuestionType(type: string) {
+    this.selectedQuestionType = type;
+  }
+  
 }
