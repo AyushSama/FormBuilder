@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { QuestionComponent } from "../question/question.component";
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [QuestionComponent],
+  imports: [QuestionComponent,MatIcon],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss'
 })

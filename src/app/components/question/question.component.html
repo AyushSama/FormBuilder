@@ -1,9 +1,12 @@
 <div class="questionLayout m-4 border-2 border-dashed border-slate-950">
     <div class="questDropdown flex justify-between m-2">
         <input class=" focus:outline-none w-3/5 p-2 bg-slate-200 " type="text" placeholder="question" >
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <div class="buttons">
+          <button><mat-icon>save</mat-icon></button>
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
             <mat-icon>more_vert</mat-icon>
           </button>
+        </div>
           <mat-menu #menu="matMenu">
             <button mat-menu-item>
               <mat-icon>text_fields</mat-icon>
