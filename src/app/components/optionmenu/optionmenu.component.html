@@ -5,7 +5,7 @@
             <div class="option m-2">
                 <input [(ngModel)]="option.value" class="focus:outline-none w-1/3 p-2 bg-slate-200" type="text">
                 <button class="ml-2" mat-mini-fab aria-label="Example icon button with a menu icon">
-                    <mat-icon>delete_outline</mat-icon>
+                    <mat-icon (click)="removeOption($index)" >delete_outline</mat-icon>
                 </button>
             </div>
         </li>

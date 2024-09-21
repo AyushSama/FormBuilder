@@ -15,4 +15,13 @@ export class FormComponent {
     this.questions.push({ question: '' }); 
   }
 
+  removeOption(index: number) {
+    if (this.questions.length > 1) {
+      this.questions.splice(index, 1);  // Remove the selected option
+    }
+  }
+
+  handleDelete($event: boolean,$index:number) {
+    this.removeOption($index);
+  }
 }

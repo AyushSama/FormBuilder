@@ -1,8 +1,12 @@
-<div class="layout m-4 border-2 border-dashed border-slate-400" >
+<div class="layout m-6 border-2 border-dashed border-slate-400" >
     <h3 class="text-center">Form Builder</h3>
-    @for (question of questions; track $index) {
-        <app-question></app-question>
-    }
+    <ol class="list-decimal">
+        @for (question of questions; track $index) {
+            <li>
+                <app-question (delete)="handleDelete($event,$index)" ></app-question>
+            </li>
+        }
+    </ol>
     <div class="addQuestionBtn flex justify-center">
         <button (click)="handleAddQuestion()" class="rounded p-2" style="background-color: #EDE8DC;">Add Question</button>
     </div>

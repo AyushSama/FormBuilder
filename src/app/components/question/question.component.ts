@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
@@ -12,5 +12,10 @@ import { OptionmenuComponent } from "../optionmenu/optionmenu.component";
   styleUrl: './question.component.scss'
 })
 export class QuestionComponent {
+  @Output() delete = new EventEmitter<boolean>;
   
+  handleDeleteQuestion() {
+    this.delete.emit(true);
+  }
+
 }
