@@ -3,5 +3,6 @@ export const endpoint = {
     insertQuestion : "insertQuestion",
     insertAnswers : "insertAnswers",
     singleQuestion : "singleQuestion",
-    allQuestions : "allQuestions"
+    allQuestions : "allQuestions",
+    questionList : "questionList",
 };
