@@ -22,6 +22,7 @@ export class ApiService {
 
   insertQuestionAnswer(body:QuestionAnswer){
     try {
+      console.log(body)
       return this.http.post(this.baseApiUrl+this.insertQuestAns,body);
     } catch (error) {
       throw new Error();
