@@ -9,6 +9,7 @@ import { Answer } from '../../interfaces/Answer';
 import { QuestionAnswer } from '../../interfaces/QuestionAnswer';
 import { Subject, takeUntil } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { QuestionContextService } from '../../services/question-context.service';
 
 @Component({
   selector: 'app-question',
@@ -20,7 +21,7 @@ templateUrl: './question.component.html',
 export class QuestionComponent {
   
   protected _onDestroy = new Subject<void>();
-  constructor(private apiService : ApiService){}
+  constructor(private apiService : ApiService,private qContext:QuestionContextService){}
   
   @Output() delete = new EventEmitter<boolean>;
   
@@ -44,7 +45,10 @@ export class QuestionComponent {
 
   handleSave(){
     this.saveQuestion();
-    this.saveAnswer();
+    if(this.selectedQuestionType=='TEXT')
+      this.saveTextOption();
+    else 
+      this.saveAnswerOption();
     this.saveQuestionAnswer();
     this.apiCall();
   }
@@ -55,6 +59,7 @@ export class QuestionComponent {
       .pipe(takeUntil(this._onDestroy))
       .subscribe({
         next: (res: any) => {
+          this.qContext.storeQuestionContext(res.questionId);
           console.log(res);
         },
         error: (error: HttpErrorResponse) => {
@@ -69,7 +74,20 @@ export class QuestionComponent {
     this.questions.questionType = this.selectedQuestionType;
   }
 
-  saveAnswer(){
+  saveTextOption() {
+    this.answers = [];
+    const newAnswer: Answer = {
+      ansId: 0, // Assign or generate an ansId as needed
+      questionId: 0, // This can be updated later if necessary
+      answerOption: 1, // Assuming answer options start from 1
+      answer: this.textContent, // Use the textContent from the input
+      correct: false // Set to false or adjust logic as needed
+    };
+    this.answers.push(newAnswer);
+  }
+  
+
+  saveAnswerOption(){
     this.answers = this.options.map((option, index) => ({
       ansId: 0, // Assign or generate an ansId as needed
       questionId: 0,
