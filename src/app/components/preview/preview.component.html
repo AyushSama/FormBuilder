@@ -1,11 +1,11 @@
 <h2 mat-dialog-title>Form Preview</h2>
-<mat-dialog-content class="mat-typography">
+<mat-dialog-content  class="mat-typography">
 
   <div *ngFor="let question of questionsData; let i = index" class="question-block">
-    <h6>{{ question.question }}</h6>
+    <h6>{{ question.question }}  </h6>
 
     <!-- Text Input -->
-  <div *ngIf="question.questionType === 'text'" class="options-group">
+  <div *ngIf="question.questionType === 'TEXT'" class="options-group">
     <input type="text" [(ngModel)]="textAnswers[i]" class="text-input" placeholder="Enter your answer" />
   </div>
   
@@ -21,7 +21,7 @@
   
     <!-- Dropdown -->
     <div *ngIf="question.questionType === 'DROPDOWN'" class="options-group">
-      <select [(ngModel)]="selectedOptions[i]">
+      <select class="border-2 border-dashed" [(ngModel)]="selectedOptions[i]">
         <option *ngFor="let option of question.options" [value]="option.answerOption">{{ option.answer }}</option>
       </select>
     </div>
@@ -42,5 +42,4 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
 </mat-dialog-actions>

@@ -9,11 +9,14 @@ import { SimplifiedQuestion } from '../../interfaces/SimplifiedQuestion';
 import { Answers } from '../../interfaces/Answers';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatOption } from '@angular/material/core';
+import { MatCheckbox } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-preview',
   standalone: true,
-  imports: [MatDialogModule,FormsModule,CommonModule],
+  imports: [MatDialogModule,FormsModule,CommonModule,MatFormField,MatLabel,MatOption,MatCheckbox],
   templateUrl: './preview.component.html',
   styleUrl: './preview.component.scss'
 })
@@ -28,70 +31,40 @@ export class PreviewComponent implements OnInit {
 
   questionsData!:SimplifiedQuestion[];
 
-  simplifiedData: SimplifiedQuestion[] = [
-    {
-      question: "What is your name?",
-      questionType: "radio",
-      options: [
-        { answerOption: 1, answer: "Ayush", correct: true },
-        { answerOption: 2, answer: "Rishabh", correct: false },
-        { answerOption: 3, answer: "Sanat", correct: false }
-      ]
-    },
-    {
-      question: "What is your country?",
-      questionType: "dropdown",
-      options: [
-        { answerOption: 1, answer: "India", correct: true },
-        { answerOption: 2, answer: "Switzerland", correct: false }
-      ]
-    },
-    {
-      question: "What things you are into?",
-      questionType: "checkbox",
-      options: [
-        { answerOption: 1, answer: "Football", correct: true },
-        { answerOption: 2, answer: "Cricket", correct: true },
-        { answerOption: 3, answer: "Hockey", correct: false }
-      ]
-    },
-    {
-      question: "What things you are into?",
-      questionType: "checkbox",
-      options: [
-        { answerOption: 1, answer: "Football", correct: true },
-        { answerOption: 2, answer: "Cricket", correct: true },
-        { answerOption: 3, answer: "Hockey", correct: false }
-      ]
-    },
-    {
-      question: "What things you are into?",
-      questionType: "checkbox",
-      options: [
-        { answerOption: 1, answer: "Football", correct: true },
-        { answerOption: 2, answer: "Cricket", correct: true },
-        { answerOption: 3, answer: "Hockey", correct: false }
-      ]
-    },
-    {
-      question: "What things you are into?",
-      questionType: "checkbox",
-      options: [
-        { answerOption: 1, answer: "Football", correct: true },
-        { answerOption: 2, answer: "Cricket", correct: true },
-        { answerOption: 3, answer: "Hockey", correct: false }
-      ]
-    },
-    {
-      question: "What things you are into?",
-      questionType: "checkbox",
-      options: [
-        { answerOption: 1, answer: "Football", correct: true },
-        { answerOption: 2, answer: "Cricket", correct: true },
-        { answerOption: 3, answer: "Hockey", correct: false }
-      ]
-    }
-  ];
+  // Sample Data
+  // simplifiedData: any[] = [
+  //   {
+  //     question: "What is your name?",
+  //     questionType: "RADIO",
+  //     options: [
+  //       { answerOption: 1, answer: "Ayush", correct: true },
+  //       { answerOption: 2, answer: "Rishabh", correct: false },
+  //       { answerOption: 3, answer: "Sanat", correct: false }
+  //     ]
+  //   },
+  //   {
+  //     question: "What is your country?",
+  //     questionType: "DROPDOWN",
+  //     options: [
+  //       { answerOption: 1, answer: "India", correct: true },
+  //       { answerOption: 2, answer: "Switzerland", correct: false }
+  //     ]
+  //   },
+  //   {
+  //     question: "What is your hobby?",
+  //     questionType: "TEXT",
+  //     options: []
+  //   },
+  //   {
+  //     question: "What things you are into?",
+  //     questionType: "CHECKBOX",
+  //     options: [
+  //       { answerOption: 1, answer: "Football", correct: true },
+  //       { answerOption: 2, answer: "Cricket", correct: true },
+  //       { answerOption: 3, answer: "Hockey", correct: false }
+  //     ]
+  //   }
+  // ];
 
   apiCall(){
     this.apiService

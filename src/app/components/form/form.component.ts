@@ -31,7 +31,9 @@ export class FormComponent {
   readonly dialog = inject(MatDialog);
 
   openDialog() {
-    const dialogRef = this.dialog.open(PreviewComponent);
+    const dialogRef = this.dialog.open(PreviewComponent,{
+      width: '90vw',
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

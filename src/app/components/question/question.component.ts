@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
@@ -10,6 +10,7 @@ import { QuestionAnswer } from '../../interfaces/QuestionAnswer';
 import { Subject, takeUntil } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { QuestionContextService } from '../../services/question-context.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-question',
@@ -22,6 +23,12 @@ export class QuestionComponent {
   
   protected _onDestroy = new Subject<void>();
   constructor(private apiService : ApiService,private qContext:QuestionContextService){}
+  
+  private _snackBar = inject(MatSnackBar);
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
   
   @Output() delete = new EventEmitter<boolean>;
   
@@ -60,7 +67,7 @@ export class QuestionComponent {
       .subscribe({
         next: (res: any) => {
           this.qContext.storeQuestionContext(res.questionId);
-          alert("Question Added Successfully!!")
+          this.openSnackBar("Question Added Successfully","Dance");
         },
         error: (error: HttpErrorResponse) => {
           console.log(error);
