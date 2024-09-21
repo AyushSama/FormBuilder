@@ -1,7 +1,9 @@
 <div class="layout m-4 border-2 border-dashed border-slate-400" >
     <h3 class="text-center">Form Builder</h3>
-    <app-question></app-question>
+    @for (question of questions; track $index) {
+        <app-question></app-question>
+    }
     <div class="addQuestionBtn flex justify-center">
-        <button class="rounded p-2" style="background-color: #EDE8DC;">Add Question</button>
+        <button (click)="handleAddQuestion()" class="rounded p-2" style="background-color: #EDE8DC;">Add Question</button>
     </div>
 </div>

@@ -9,5 +9,10 @@ import { QuestionComponent } from "../question/question.component";
   styleUrl: './form.component.scss'
 })
 export class FormComponent {
+  questions:Array<{question : string}> = [{question:''}];
+  
+  handleAddQuestion() {
+    this.questions.push({ question: '' }); 
+  }
 
 }
