@@ -1,8 +1,8 @@
 <div class="questionLayout m-4 border-2 border-dashed border-slate-950">
     <div class="questDropdown flex justify-between m-2">
-        <input class=" focus:outline-none w-3/5 p-2 bg-slate-200 " type="text" placeholder="question" >
+        <input [(ngModel)]="questionContent" class=" focus:outline-none w-3/5 p-2 bg-slate-200 " type="text" placeholder="question" >
         <div class="buttons">
-          <button><mat-icon>save</mat-icon></button>
+          <button (click)="handleSave()" ><mat-icon>save</mat-icon></button>
           <span class="questionType relative -top-1 left-2 font text-xl">
             {{selectedQuestionType}}
           </span>
@@ -36,10 +36,24 @@
     </div>
     @if (selectedQuestionType == "TEXT") {
       <div class="textbox">
-          <textarea style="width: 97.5%;" class="m-2 border-2 border-solid border-black" name="textArea" id="textarea"></textarea>
+          <textarea [(ngModel)]="textContent" style="width: 97.5%;" class="m-2 border-2 border-solid border-black" name="textArea" id="textarea"></textarea>
       </div>
     }
     @else {
-      <app-optionmenu></app-optionmenu>
+      <ol class="optionsList ml-7 list-decimal">
+
+        @for (option of options; track $index) {
+            <li>
+                <div class="option m-2">
+                    <input [(ngModel)]="option.value" class="focus:outline-none w-1/3 p-2 bg-slate-200" type="text">
+                    <button class="ml-2" mat-mini-fab aria-label="Example icon button with a menu icon">
+                        <mat-icon (click)="removeOption($index)" >delete_outline</mat-icon>
+                    </button>
+                </div>
+            </li>
+        }
+    
+    </ol>
+    <button class="m-2" (click)="handleAddOptions()">Add Options</button>
     }
 </div>
